@@ -79,7 +79,11 @@ class MoviesController < ApplicationController
   def add_tmdb
     if(params[:tmdb_movies] != nil) then
       ids = params[:tmdb_movies].keys
-      Movie.add_tmdb_movies(ids)
+      
+      ids.each do |id|
+        Movie.create_from_tmdb(id)
+      end
+      
       flash[:notice] = "Movies successfully added to Rotten Potatoes"
       redirect_to movies_path
     else
