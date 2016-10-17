@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'rails_helper'
 
+
+
 describe MoviesController do
   describe 'searching TMDb' do
    it 'should call the model method that performs TMDb search' do
@@ -20,5 +22,9 @@ describe MoviesController do
       post :search_tmdb, {:search_terms => 'Ted'}
       expect(assigns(:movies)).to eq(fake_results)
     end 
+    #it 'should select the homepage for rendering when the search box is nil' do
+    #  post :search_tmdb, {:search_terms => nil}
+    #  expect(redirect_to).to render_template('index')
+    #end
   end
 end

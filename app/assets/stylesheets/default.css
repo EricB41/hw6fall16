@@ -33,6 +33,12 @@ h1.title {
   font-size: 2em;
   font-style: normal;
 }
+h2 {
+  color: maroon;
+  font-size: 100%;
+  display: block;
+  width: 100%;
+}
 table#movies {
   margin: 10px;
   border-collapse: collapse;
