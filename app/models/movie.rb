@@ -11,16 +11,17 @@ class Movie < ActiveRecord::Base
     movies_raw = []
     begin
       movies_raw = Tmdb::Movie.find(string)
-      
     rescue Tmdb::InvalidApiKeyError
         raise Movie::InvalidKeyError, 'Invalid API key'
     end
-    movies_raw.each do |movie|
-      releases = Tmdb::Movie.releases(movie.id)["countries"]
-      rating = Movie.getRating(releases)
+    if(movies_raw != nil)
+      movies_raw.each do |movie|
+        releases = Tmdb::Movie.releases(movie.id)["countries"]
+        rating = Movie.getRating(releases)
       
-      if(rating != nil) then
-        movie_list_hash.push({:tmdb_id => movie.id, :title => movie.title, :rating => rating, :release_date => movie.release_date})
+        if(rating != nil) then
+          movie_list_hash.push({:tmdb_id => movie.id, :title => movie.title, :rating => rating, :release_date => movie.release_date})
+        end
       end
     end
     
